@@ -11,11 +11,18 @@
  *
  * @author Дом
  */
-class User extends yii\db\ActiveRecord implements yii\web\IdentityInterface
+namespace app\models;
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    public function rules() {
+        return [
+            [['pass','email'],'required']
+        ];
+    }
+
     public static function tableName()
     {
-        return '{{%users}}';
+        return 'easyii_adcoin_users';
     }
     public function attributeLabels() {
         return [
@@ -41,7 +48,7 @@ class User extends yii\db\ActiveRecord implements yii\web\IdentityInterface
     }
 
     public static function findIdentity($id) {
-        return User::findOne([':id'=>$id]);
+        return User::findOne(['id'=>$id]);
     }
 
     public static function findIdentityByAccessToken($token, $type = null) {

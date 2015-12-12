@@ -1,17 +1,43 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of LoginForm
  *
  * @author Дом
  */
-class LoginForm  extends yii\base\Model{
+namespace app\models;
+use app\components\helpers\ProffstoreCURL;
+class LoginForm  extends \yii\base\Model
+{
     public $email;
     public $password;
+    public function login()
+    {
+        $proffstore = new ProffstoreCURL();
+        $proffstore->auth($this->password, $this->email);
+        if($proffstore->accesToken)
+        {
+            $user = new User();
+            $user->setAttributes([
+                'email'=>$this->email,
+                'pass'=>$this->password
+            ]);
+            \Yii::$app->user->login($user,3600*24*3);
+            return true;
+        }
+        else
+        {
+            return false;
+            
+        }
+        
+    }
+    
+    public function rules() {
+        return [
+            [['email'],'email'],
+            [['email','password'],'filter','filter'=>function($val){
+                return strip_tags($val);
+            }]
+        ];
+    }
 }
