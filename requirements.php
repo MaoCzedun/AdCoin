@@ -65,7 +65,7 @@ $requirements = array(
     ),
     array(
         'name' => 'PDO MySQL extension',
-        'mandatory' => false,
+        'mandatory' => true,
         'condition' => extension_loaded('pdo_mysql'),
         'by' => 'All DB-related classes',
         'memo' => 'Required for MySQL database.',

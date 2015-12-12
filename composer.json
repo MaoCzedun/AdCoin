@@ -1,33 +1,25 @@
 {
-    "name": "yiisoft/yii2-app-basic",
-    "description": "Yii 2 Basic Project Template",
-    "keywords": ["yii2", "framework", "basic", "project template"],
-    "homepage": "http://www.yiiframework.com/",
+    "name": "noumo/easyii-shop",
+    "description": "Easyiicms simple shop with examples of all modules",
+    "keywords": ["yii2", "cms", "control panel", "admin", "easy", "shop"],
+    "homepage": "http://easyiicms.com",
     "type": "project",
-    "license": "BSD-3-Clause",
+    "license": "GNU GPL V3",
     "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
+        "wiki": "http://easyiicms.com/docs",
+        "source": "https://github.com/noumo/easyii-shop.git",
+        "issues": "https://github.com/noumo/easyii-shop/issues"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": ">=2.0.5",
-        "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*",
-        "coinbase/coinbase": "^2.2"
+        "noumo/easyii": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*",
         "yiisoft/yii2-faker": "*"
-    },
-    "config": {
-        "process-timeout": 1800
     },
     "scripts": {
         "post-create-project-cmd": [
@@ -36,20 +28,18 @@
     },
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
-            "setPermission": [
-                {
-                    "runtime": "0777",
-                    "web/assets": "0777",
-                    "yii": "0755"
-                }
-            ],
             "generateCookieValidationKey": [
-                "config/web.php"
+                "app/config/web.php"
             ]
         },
         "asset-installer-paths": {
             "npm-asset-library": "vendor/npm",
             "bower-asset-library": "vendor/bower"
-        }
+        },
+	    "writable": [
+            "assets",
+            "uploads",
+            "runtime"
+        ]
     }
 }
