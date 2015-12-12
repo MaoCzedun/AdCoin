@@ -24,4 +24,9 @@ class SiteController extends Controller
         }
         return $this->render('index');
     }
+    public function actionLogin()
+    {
+        $connection =  \Yii::$app->db;
+        $loginForm  =  new \yii\easyii\models\LoginForm();
+    }
 }
