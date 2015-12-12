@@ -11,13 +11,41 @@
  *
  * @author Дом
  */
-class User extends yii\db\ActiveRecord
+class User extends yii\db\ActiveRecord implements yii\web\IdentityInterface
 {
     public static function tableName()
     {
-        return '{{$users}}';
+        return '{{%users}}';
     }
     public function attributeLabels() {
-        parent::attributeLabels();
+        return [
+            'email'=>'Эллектронный адрес',
+            'pass'=>'Пароль',
+            'balance'=>'баланс кошелька',
+            'bitcoin_wallet'=>'Bitcoin кошелек',
+            'token'=>'Токен авторизации',
+            'id'=>'id'
+        ];
     }
+
+    public function getAuthKey() {
+        
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function validateAuthKey($authKey) {
+        
+    }
+
+    public static function findIdentity($id) {
+        return User::findOne([':id'=>$id]);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null) {
+        
+    }
+
 }

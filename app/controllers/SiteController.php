@@ -29,4 +29,5 @@ class SiteController extends Controller
         $connection =  \Yii::$app->db;
         $loginForm  =  new \yii\easyii\models\LoginForm();
     }
+//    public function action
 }
