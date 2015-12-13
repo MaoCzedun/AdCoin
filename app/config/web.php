@@ -16,8 +16,10 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'd56RqNaHXlD9OMvShapk',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
-        
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -28,10 +30,13 @@ $config = [
             'class' => 'yii\swiftmailer\Mailer',
         ],
         'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
             'rules' => [
                 '<controller:\w+>/view/<slug:[\w-]+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/cat/<slug:[\w-]+>' => '<controller>/cat',
+                  ['class' => 'yii\rest\UrlRule', 'controller' => 'rest'],
             ],
         ],
         'assetManager' => [

@@ -43,24 +43,6 @@ class SiteController extends Controller
         }
         return $this->render('login',['model'=>$loginForm]);
     }
-    public function actionAuth()
-    {
-        $loginForm  =  new LoginForm();
-        if($loginForm->load(\Yii::$app->request->post()))
-        {
-            if($loginForm->login())
-            {
-                $this->redirect('/site/index');
-            }
-            else
-            {
-                $loginForm->addErrors([
-                    'password'=>'Неправильны email или пароль',
-                    'email'=>'Неправильны email или пароль'
-                ]);
-            }
-        }
-    }
     public function actionLogout()
     {
         \Yii::$app->user->logout();

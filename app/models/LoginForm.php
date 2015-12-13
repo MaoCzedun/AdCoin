@@ -31,11 +31,11 @@ class LoginForm  extends \yii\base\Model
                 $user->save(false); 
             }
             \Yii::$app->user->login($user,3600*24*3);
-            return true;
+            return $proffstore->accesToken;
         }
         else
         {
-            return false;       
+            return null;       
         }
         
     }
