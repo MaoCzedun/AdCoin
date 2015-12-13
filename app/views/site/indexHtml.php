@@ -22,7 +22,7 @@
             </ul>
         </div>
         <div class="header__logo">
-            <a onclick="console.log('click')" href="/index.php/shop/cat/body" target="_blank">
+            <a onclick="console.log('click')" href="/index.php/shop/index" target="_blank">
                 <img src="img/logo.png" alt="">
             </a>
         </div>
@@ -41,13 +41,39 @@
     <div class="block-1">
         <img src="img/marketplace-of-advertisement.png" alt="">
     </div>
+    <a href="/site/login" target="_blank"><button id="submit">Войти</button></a>
+    
+    <a href="/site/login" target="_blank"><button id="add">Добавить предложение </button></a>
+    <style>
+        #submit{
+            background-color: #000000;
+        }
+        #add{
+            background-color: #D4A820;
+        }
+        
+    </style>
     <div class="block-2">
         <div class="block-2__car"></div>
     </div>
+    <style>
+        #new_child {
+            background: url(../img/pampers-boy.png) no-repeat center;
+            
+            width: 657px;
+            height: 356px;
+;
+            right: 0;
+            display:none;
+        }
+        
+    </style>
+        
     <div class="block-3">
         <div class="block-3__container clearfix">
             <div class="pull-left">
                 <div class="block-3__child"></div>
+                <div id="new_child"></div>
             </div>
             <div class="pull-right">
                 <div class="block-3__heart">
@@ -68,7 +94,7 @@
     <div class="block-4 clearfix">
         <div class="block-4__container clearfix">
             <div class="block-4__img-1 block-4__img">
-                <img src="img/block-4__img-1.jpg" alt="">
+                <img src="img/durov2.png" alt="">
             </div>
             <div class="block-4__img-2 block-4__img">
                 <img src="img/block-4__img-2.jpg" alt="">

@@ -17,7 +17,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules() {
         return [
             [['pass','email'],'required'],
-            [['email'],'unique']
+            [['email'],'unique'],
+            [['tocken'],'safe']
         ];
     }
 
