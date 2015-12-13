@@ -13,7 +13,8 @@
  */
 namespace app\controllers;
 use app\models\LoginForm;
-use yii\filters\auth\HttpBearerAuth;
+use app\models\User as US;
+use yii\filters\auth\QueryParamAuth ;
 use yii\rest\ActiveController;
 class RestController extends ActiveController
 {
@@ -32,18 +33,18 @@ class RestController extends ActiveController
                 $token  = $loginForm->login();
                 if($token)
                 {
-                    return json_encode(['tocken'=>$token]);
+                    return ['tocken'=>$token];
                 }
                 else
                 {
-                    return json_encode(
+                    return 
                         [
                             'errors'=>[
                                 'password'=>'Неправильны email или пароль',
                                 'email'=>'Неправильны email или пароль'
                             ]
                         ]
-                    );
+                    ;
                 }
             }    
         
@@ -53,15 +54,18 @@ class RestController extends ActiveController
     public function behaviors() {
         $behaviors = parent::behaviors();
         $behaviors['authenticator'] = [
-            'class' =>  HttpBearerAuth::className(),
-            'except'=>['login']
+            'class' =>  QueryParamAuth ::className(),
+            'tokenParam'=>'token',
+            'except'=>['login','test'],
+            
         ];
         return $behaviors;
     }
 
     public function actionTest()
     {
-        return json_encode([\Yii::$app->user->isGuest]);
+        
+        return US::findIdentityByAccessToken('4f39779fd6acb266333ad658c317deb2390a8fde231447e2d8ae41079ff0a936');
     }
             
 }
