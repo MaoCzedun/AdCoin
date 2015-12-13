@@ -16,18 +16,26 @@ class LoginForm  extends \yii\base\Model
         $proffstore->auth($this->password, $this->email);
         if($proffstore->accesToken)
         {
-            $user = new User();
-            $user->setAttributes([
-                'email'=>$this->email,
-                'pass'=>$this->password
-            ]);
+            $user = \app\models\User::findOne(['email'=>$this->email]);
+            if($user){
+                $user->setAttribute('tocken',$proffstore->accesToken);
+                $user->update(false);
+            }
+            else
+            {
+                $user->setAttributes([
+                    'email'=>$this->email,
+                    'pass'=>$this->password,
+                    'tocken'=>$proffstore->accesToken   
+                ]);
+                $user->save(false); 
+            }
             \Yii::$app->user->login($user,3600*24*3);
             return true;
         }
         else
         {
-            return false;
-            
+            return false;       
         }
         
     }

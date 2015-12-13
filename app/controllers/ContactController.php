@@ -11,7 +11,7 @@ class ContactController extends \yii\web\Controller
     }
     public function actionTest()
     {
-        var_dump(User::findIdentity(2));
+        var_dump(\Yii::$app->session);
 //        $proffstoreClient =  new ProffstoreCURL();
 //        $proffstoreClient->auth('ap23029514', 'alexpetrov5@mail.ru');
 //        if($proffstoreClient->accesToken)

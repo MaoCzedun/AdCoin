@@ -16,7 +16,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     public function rules() {
         return [
-            [['pass','email'],'required']
+            [['pass','email'],'required'],
+            [['email'],'unique']
         ];
     }
 
@@ -30,7 +31,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'pass'=>'Пароль',
             'balance'=>'баланс кошелька',
             'bitcoin_wallet'=>'Bitcoin кошелек',
-            'token'=>'Токен авторизации',
+            'tocken'=>'Токен авторизации',
             'id'=>'id'
         ];
     }
@@ -52,7 +53,10 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     }
 
     public static function findIdentityByAccessToken($token, $type = null) {
-        
+        return User::findOne(['tocken'=>$token]);
     }
-
+    public function isRoot()
+    {
+        return false;
+    }
 }

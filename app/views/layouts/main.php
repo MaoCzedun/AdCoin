@@ -23,19 +23,32 @@ $goodsCount = count(Shopcart::goods());
                 </div>
 
                 <div class="collapse navbar-collapse" id="navbar-menu">
-                    <?= Menu::widget([
+                    
+                    <?php
+                    $items  = [
+                        ['label' => 'Home', 'url' => ['site/index']],
+                        ['label' => 'Shop', 'url' => ['shop/index']],
+                        ['label' => 'News', 'url' => ['news/index']],
+                        ['label' => 'Articles', 'url' => ['articles/index']],
+                        ['label' => 'Gallery', 'url' => ['gallery/index']],
+                        ['label' => 'Guestbook', 'url' => ['guestbook/index']],
+                        ['label' => 'FAQ', 'url' => ['faq/index']],
+                        ['label' => 'Contact', 'url' => ['/contact/index']], 
+                    ];
+                    if(\Yii::$app->user->isGuest)
+                    {
+                        $items[]= ['label' => 'Войти', 'url' => ['/site/login']];
+                    }
+                    else
+                    {
+//                        $userEmail = \Yii::$app->user->email;
+                        $items[]= ['label' => "Выйти", 'url' => ['/site/logout']]; 
+                    }
+                    
+                    echo  Menu::widget([
                         'options' => ['class' => 'nav navbar-nav'],
-                        'items' => [
-                            ['label' => 'Home', 'url' => ['site/index']],
-                            ['label' => 'Shop', 'url' => ['shop/index']],
-                            ['label' => 'News', 'url' => ['news/index']],
-                            ['label' => 'Articles', 'url' => ['articles/index']],
-                            ['label' => 'Gallery', 'url' => ['gallery/index']],
-                            ['label' => 'Guestbook', 'url' => ['guestbook/index']],
-                            ['label' => 'FAQ', 'url' => ['faq/index']],
-                            ['label' => 'Contact', 'url' => ['/contact/index']],
-                        ],
-                    ]); ?>
+                        'items'=>$items ,
+                    ]);?>
                     <a href="<?= Url::to(['/shopcart']) ?>" class="btn btn-default navbar-btn navbar-right" title="Complete order">
                         <i class="glyphicon glyphicon-shopping-cart"></i>
                         <?php if($goodsCount > 0) : ?>
